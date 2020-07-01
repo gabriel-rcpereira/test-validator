@@ -2,8 +2,11 @@
 
 ### Steps proposed
 -[x] Basic Bean Validations
+
 -[ ] Custom Validator
--[ ] Validation Programmatically   
+
+-[ ] Validation Programmatically  
+ 
 -[ ] Global error handling(Spring exceptions) 
 
 ### References
