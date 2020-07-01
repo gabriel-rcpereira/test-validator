@@ -1,4 +1,4 @@
-#Spring Bean Validator Bootcamp
+#Spring Bean Validation Bootcamp
 
 ###Steps proposed
 -[x] Basic Bean Validations
