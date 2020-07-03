@@ -1,8 +1,10 @@
 package com.grcp.testvalidation.product.entrypoint.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.grcp.testvalidation.product.entrypoint.rest.json.ProductAttributeRequest;
 import com.grcp.testvalidation.product.entrypoint.rest.json.ProductRequest;
 import com.grcp.testvalidation.product.usecase.ProductActivator;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -24,7 +26,12 @@ public class ProductControllerTest {
 
     @Test
     public void shouldCreateProduct_expectedCreatedStatus_fromBeanValidation() throws Exception {
-        ProductRequest request = ProductRequest.builder().name("product").value(5.0).build();
+        ProductRequest request = ProductRequest.builder()
+                .name("product")
+                .value(5.0)
+                .attributes(List.of(buildProductAttributeRequest("attr 1"),
+                        buildProductAttributeRequest("attr 2")))
+                .build();
         String json = mapper.writeValueAsString(request);
 
         mockMvc.perform(post("/api/v1/products")
@@ -56,6 +63,37 @@ public class ProductControllerTest {
     }
 
     @Test
+    public void shouldCreateProductWhenItHasOneAttribute_expectedBadRequest_fromCustomValidation() throws Exception {
+        ProductRequest request = ProductRequest.builder()
+                .name("product one")
+                .value(5.0)
+                .attributes(List.of(buildProductAttributeRequest("attr 1")))
+                .build();
+        String json = mapper.writeValueAsString(request);
+
+        mockMvc.perform(post("/api/v1/products")
+                .contentType(APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void shouldCreateProductWhenItHasTwoAttributesAndOnesHasNotName_expectedBadRequest_fromCustomValidation() throws Exception {
+        ProductRequest request = ProductRequest.builder()
+                .name("product one")
+                .value(5.0)
+                .attributes(List.of(buildProductAttributeRequest("attr 1"),
+                        buildProductAttributeRequest("")))
+                .build();
+        String json = mapper.writeValueAsString(request);
+
+        mockMvc.perform(post("/api/v1/products")
+                .contentType(APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void shouldActivateProduct_expectedNoContentStatus() throws Exception {
         mockMvc.perform(put("/api/v1/products/1")
                     .queryParam("username", "usernameActivator"))
@@ -73,5 +111,11 @@ public class ProductControllerTest {
     public void shouldActivateProductWhenProductLessThanOne_expectedBadRequest_fromPathParamValidation() throws Exception {
         mockMvc.perform(put("/api/v1/products/0"))
                 .andExpect(status().isBadRequest());
+    }
+
+    private ProductAttributeRequest buildProductAttributeRequest(String name) {
+        return ProductAttributeRequest.builder()
+                .name(name)
+                .build();
     }
 }

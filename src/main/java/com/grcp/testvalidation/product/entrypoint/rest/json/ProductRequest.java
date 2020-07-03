@@ -1,5 +1,9 @@
 package com.grcp.testvalidation.product.entrypoint.rest.json;
 
+import com.grcp.testvalidation.product.entrypoint.rest.json.customvalidator.ProductAttribute;
+import java.util.ArrayList;
+import java.util.List;
+import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -24,4 +28,9 @@ public class ProductRequest {
 
     @DecimalMin("0.01")
     private double value;
+
+    @Valid
+    @ProductAttribute
+    @Builder.Default
+    private List<ProductAttributeRequest> attributes = new ArrayList<>();
 }
