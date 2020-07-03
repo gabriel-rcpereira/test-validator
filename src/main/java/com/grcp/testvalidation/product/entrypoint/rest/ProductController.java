@@ -26,12 +26,14 @@ public class ProductController {
     private final ProductActivator productActivator;
 
     @PostMapping(value = "/api/v1/products", consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> createProduct(@RequestBody @Valid ProductRequest request) {
+    public ResponseEntity<Void> createProduct(@RequestBody
+                                                  @Valid ProductRequest request) {
         return ResponseEntity.status(CREATED).build();
     }
 
     @PutMapping(value = "/api/v1/products/{id}")
-    public ResponseEntity<Void> updateProductToActivated(@PathVariable("id") @Min(1) long id,
+    public ResponseEntity<Void> updateProductToActivated(@PathVariable("id")
+                                                             @Min(1) long id,
                                                          @RequestParam("username")
                                                                  String username) {
         productActivator.execute(id, username);
