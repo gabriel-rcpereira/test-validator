@@ -22,7 +22,7 @@ public class PersonRequest {
     @Size(min = 5, max = 30)
     private String name;
     @NotBlank
-    @Min(8)
+    @Size(min = 8)
     private String username;
     private JobPositionRequest jobPositionRequest;
 }
