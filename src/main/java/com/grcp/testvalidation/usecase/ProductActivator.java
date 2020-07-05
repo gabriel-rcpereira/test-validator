@@ -1,4 +1,4 @@
-package com.grcp.testvalidation.product.usecase;
+package com.grcp.testvalidation.usecase;
 
 import javax.validation.constraints.Size;
 import lombok.extern.slf4j.Slf4j;

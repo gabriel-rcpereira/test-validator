@@ -1,12 +1,10 @@
-package com.grcp.testvalidation.product.entrypoint.rest;
+package com.grcp.testvalidation.entrypoint.rest;
 
-import com.grcp.testvalidation.product.entrypoint.rest.json.person.PersonRequest;
+import com.grcp.testvalidation.entrypoint.rest.json.person.PersonRequest;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import javax.validation.Validation;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

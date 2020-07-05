@@ -1,4 +1,4 @@
-package com.grcp.testvalidation.product.entrypoint.rest;
+package com.grcp.testvalidation.entrypoint.rest;
 
 import javax.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

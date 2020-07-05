@@ -1,9 +1,9 @@
-package com.grcp.testvalidation.product.entrypoint.rest;
+package com.grcp.testvalidation.entrypoint.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.grcp.testvalidation.product.entrypoint.rest.json.ProductAttributeRequest;
-import com.grcp.testvalidation.product.entrypoint.rest.json.ProductRequest;
-import com.grcp.testvalidation.product.usecase.ProductActivator;
+import com.grcp.testvalidation.entrypoint.rest.json.product.ProductAttributeRequest;
+import com.grcp.testvalidation.entrypoint.rest.json.product.ProductRequest;
+import com.grcp.testvalidation.usecase.ProductActivator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

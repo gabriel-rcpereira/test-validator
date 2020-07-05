@@ -1,6 +1,6 @@
-package com.grcp.testvalidation.product.entrypoint.rest.customvalidator;
+package com.grcp.testvalidation.entrypoint.rest.customvalidator.person;
 
-import com.grcp.testvalidation.product.entrypoint.rest.json.person.PersonRequest;
+import com.grcp.testvalidation.entrypoint.rest.json.person.PersonRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

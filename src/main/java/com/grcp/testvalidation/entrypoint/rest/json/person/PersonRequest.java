@@ -1,6 +1,5 @@
-package com.grcp.testvalidation.product.entrypoint.rest.json.person;
+package com.grcp.testvalidation.entrypoint.rest.json.person;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;

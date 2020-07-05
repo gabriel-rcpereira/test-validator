@@ -1,7 +1,6 @@
-package com.grcp.testvalidation.product.entrypoint.rest.json;
+package com.grcp.testvalidation.entrypoint.rest.json.product;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

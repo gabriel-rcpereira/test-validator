@@ -1,4 +1,4 @@
-package com.grcp.testvalidation.product.domain;
+package com.grcp.testvalidation.domain;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

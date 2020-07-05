@@ -1,4 +1,4 @@
-package com.grcp.testvalidation.product.entrypoint.rest.json.person;
+package com.grcp.testvalidation.entrypoint.rest.json.person;
 
 public enum JobPositionRequest {
 

@@ -1,7 +1,7 @@
-package com.grcp.testvalidation.product.entrypoint.rest.customvalidator;
+package com.grcp.testvalidation.entrypoint.rest.customvalidator.product;
 
-import com.grcp.testvalidation.product.entrypoint.rest.customvalidator.annotation.ProductAttribute;
-import com.grcp.testvalidation.product.entrypoint.rest.json.ProductAttributeRequest;
+import com.grcp.testvalidation.entrypoint.rest.customvalidator.product.annotation.ProductAttribute;
+import com.grcp.testvalidation.entrypoint.rest.json.product.ProductAttributeRequest;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.ConstraintValidator;

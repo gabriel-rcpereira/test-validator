@@ -1,6 +1,6 @@
-package com.grcp.testvalidation.product.entrypoint.rest.json;
+package com.grcp.testvalidation.entrypoint.rest.json.product;
 
-import com.grcp.testvalidation.product.entrypoint.rest.customvalidator.annotation.ProductAttribute;
+import com.grcp.testvalidation.entrypoint.rest.customvalidator.product.annotation.ProductAttribute;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;

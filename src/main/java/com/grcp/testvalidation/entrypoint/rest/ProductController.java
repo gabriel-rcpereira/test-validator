@@ -1,8 +1,7 @@
-package com.grcp.testvalidation.product.entrypoint.rest;
+package com.grcp.testvalidation.entrypoint.rest;
 
-import com.grcp.testvalidation.product.domain.Product;
-import com.grcp.testvalidation.product.entrypoint.rest.json.ProductRequest;
-import com.grcp.testvalidation.product.usecase.ProductActivator;
+import com.grcp.testvalidation.entrypoint.rest.json.product.ProductRequest;
+import com.grcp.testvalidation.usecase.ProductActivator;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
