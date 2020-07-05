@@ -1,5 +1,6 @@
-package com.grcp.testvalidation.product.entrypoint.rest.json.customvalidator;
+package com.grcp.testvalidation.product.entrypoint.rest.customvalidator.annotation;
 
+import com.grcp.testvalidation.product.entrypoint.rest.customvalidator.ProductAttributeValidator;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
