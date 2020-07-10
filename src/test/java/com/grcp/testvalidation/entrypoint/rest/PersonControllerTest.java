@@ -1,7 +1,9 @@
 package com.grcp.testvalidation.entrypoint.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.grcp.testvalidation.entrypoint.rest.customvalidator.person.PersonProgrammaticallyValidator;
+import com.grcp.testvalidation.config.message.MessageConfiguration;
+import com.grcp.testvalidation.entrypoint.rest.customvalidator.person.DependentProgrammaticallyValidator;
+import com.grcp.testvalidation.entrypoint.rest.json.DependentRequest;
 import com.grcp.testvalidation.entrypoint.rest.json.person.PersonRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = { PersonController.class, PersonProgrammaticallyValidator.class })
+@WebMvcTest(controllers = { PersonController.class, DependentProgrammaticallyValidator.class, MessageConfiguration.class })
 public class PersonControllerTest {
 
     @Autowired
@@ -52,6 +54,36 @@ public class PersonControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/persons")
                     .contentType(APPLICATION_JSON)
                     .content(json))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void shouldCreateDependent_expectedCreated() throws Exception {
+        DependentRequest request = DependentRequest.builder()
+                .name("dependent name")
+                .build();
+
+        String json = mapper.writeValueAsString(request);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/persons/dependents")
+                    .contentType(APPLICATION_JSON)
+                    .content(json))
+                .andDo(print())
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void shouldCreateDependent_expectedBadRequest() throws Exception {
+        DependentRequest request = DependentRequest.builder()
+                .name("")
+                .build();
+
+        String json = mapper.writeValueAsString(request);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/persons/dependents")
+                .contentType(APPLICATION_JSON)
+                .content(json))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }

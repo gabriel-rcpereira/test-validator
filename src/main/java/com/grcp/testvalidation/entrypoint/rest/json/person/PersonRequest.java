@@ -17,10 +17,10 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 public class PersonRequest {
 
-    @NotBlank
+    @NotBlank()
     @Size(min = 5, max = 30)
     private String name;
-    @NotBlank
+    @NotBlank()
     @Size(min = 8)
     private String username;
     private JobPositionRequest jobPositionRequest;

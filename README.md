@@ -16,3 +16,4 @@
 - https://www.baeldung.com/javax-validation
 - https://docs.spring.io/spring/docs/4.1.x/spring-framework-reference/html/validation.html
 - https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/ValidationUtils.html
+- https://www.toptal.com/java/spring-boot-rest-api-error-handling
