@@ -1,8 +1,7 @@
-package com.grcp.testvalidation.entrypoint.rest;
+package com.grcp.testvalidation.entrypoint.rest.handlerexception;
 
 import javax.validation.ConstraintViolationException;
 import org.springframework.context.annotation.Primary;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
