@@ -5,7 +5,7 @@
 
 * [x] Custom Validator
 
-* [ ] Validation Programmatically  
+* [x] Validation Programmatically  
 
 * [ ] Global error handling(Spring exceptions)
 

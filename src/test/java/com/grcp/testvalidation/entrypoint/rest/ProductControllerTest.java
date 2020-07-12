@@ -1,6 +1,12 @@
 package com.grcp.testvalidation.entrypoint.rest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.grcp.testvalidation.config.message.MessageConfiguration;
+import com.grcp.testvalidation.entrypoint.rest.handlerexception.CustomExceptionHandler;
+import com.grcp.testvalidation.entrypoint.rest.handlerexception.json.ErrorResponse;
+import com.grcp.testvalidation.entrypoint.rest.handlerexception.json.Error;
+import com.grcp.testvalidation.entrypoint.rest.handlerexception.mapper.ErrorMapper;
 import com.grcp.testvalidation.entrypoint.rest.json.product.ProductAttributeRequest;
 import com.grcp.testvalidation.entrypoint.rest.json.product.ProductRequest;
 import com.grcp.testvalidation.usecase.ProductActivator;
@@ -9,13 +15,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(value = {ProductController.class, ProductActivator.class})
+@WebMvcTest(value = {ProductController.class, ProductActivator.class, CustomExceptionHandler.class, ErrorMapper.class, MessageConfiguration.class })
 public class ProductControllerTest {
 
     @Autowired
@@ -91,6 +99,33 @@ public class ProductControllerTest {
                 .contentType(APPLICATION_JSON)
                 .content(json))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void shouldCreateProductWhenAllAttributesHaveError_expectedBadRequest_fromBeanAndCustomValidationAndCustomMessage() throws Exception {
+        ProductRequest request = ProductRequest.builder()
+                .name("")
+                .value(0.0)
+                .attributes(List.of(buildProductAttributeRequest("")))
+                .build();
+        String json = mapper.writeValueAsString(request);
+
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .errors(List.of(
+                        Error.builder().field("name").errorMessage("The Product Name could not be blank").build(),
+                        Error.builder().field("name").errorMessage("size must be between 3 and 50").build(),
+                        Error.builder().field("value").errorMessage("The Product Value could not be less than 0.01").build(),
+                        Error.builder().field("attributes[0].name").errorMessage("The Product Attribute Name could not be blank").build(),
+                        Error.builder().field("attributes").errorMessage("The Product Attributes could not be less than 1").build()
+                ))
+                .build();
+        String jsonErrorResponse = mapper.writeValueAsString(errorResponse);
+
+        mockMvc.perform(post("/api/v1/products")
+                    .contentType(APPLICATION_JSON)
+                    .content(json))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.content().json(jsonErrorResponse));
     }
 
     @Test
