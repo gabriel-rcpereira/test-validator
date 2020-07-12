@@ -112,11 +112,11 @@ public class ProductControllerTest {
 
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .errors(List.of(
-                        Error.builder().field("name").errorMessage("The Product Name could not be blank").build(),
-                        Error.builder().field("name").errorMessage("size must be between 3 and 50").build(),
-                        Error.builder().field("value").errorMessage("The Product Value could not be less than 0.01").build(),
-                        Error.builder().field("attributes[0].name").errorMessage("The Product Attribute Name could not be blank").build(),
-                        Error.builder().field("attributes").errorMessage("The Product Attributes could not be less than 1").build()
+                        buildError("name", "The Product Name could not be blank"),
+                        buildError("name", "size must be between 3 and 50"),
+                        buildError("value", "The Product Value could not be less than 0.01"),
+                        buildError("attributes[0].name", "The Product Attribute Name could not be blank"),
+                        buildError("attributes", "The Product Attributes could not be less than 1")
                 ))
                 .build();
         String jsonErrorResponse = mapper.writeValueAsString(errorResponse);
@@ -146,6 +146,10 @@ public class ProductControllerTest {
     public void shouldActivateProductWhenProductLessThanOne_expectedBadRequest_fromPathParamValidation() throws Exception {
         mockMvc.perform(put("/api/v1/products/0"))
                 .andExpect(status().isBadRequest());
+    }
+
+    private Error buildError(String name, String errorMessage) {
+        return Error.builder().field(name).errorMessage(errorMessage).build();
     }
 
     private ProductAttributeRequest buildProductAttributeRequest(String name) {

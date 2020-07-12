@@ -11,15 +11,15 @@ import org.springframework.validation.FieldError;
 @Component
 public class ErrorMapper {
 
-    public ErrorResponse mapToErrorsResponse(BindingResult bindingResult) {
+    public ErrorResponse mapToErrorResponse(BindingResult bindingResult) {
         List<Error> errors = bindingResult.getFieldErrors().stream()
                 .map(this::buildError)
                 .collect(Collectors.toList());
 
-        return mapToErrorsResponse(errors);
+        return mapToErrorResponse(errors);
     }
 
-    private ErrorResponse mapToErrorsResponse(List<Error> errors) {
+    private ErrorResponse mapToErrorResponse(List<Error> errors) {
         return ErrorResponse.builder()
                 .errors(errors)
                 .build();

@@ -2,9 +2,6 @@ package com.grcp.testvalidation.entrypoint.rest.handlerexception;
 
 import com.grcp.testvalidation.entrypoint.rest.handlerexception.mapper.ErrorMapper;
 import com.grcp.testvalidation.entrypoint.rest.handlerexception.json.ErrorResponse;
-import com.grcp.testvalidation.entrypoint.rest.handlerexception.json.Error;
-import java.util.List;
-import java.util.stream.Collectors;
 import javax.validation.ConstraintViolationException;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +34,7 @@ public class CustomExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(BAD_REQUEST)
     ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        ErrorResponse errorResponse = errorMapper.mapToErrorsResponse(e.getBindingResult());
+        ErrorResponse errorResponse = errorMapper.mapToErrorResponse(e.getBindingResult());
         return ResponseEntity.badRequest()
                 .body(errorResponse);
     }
