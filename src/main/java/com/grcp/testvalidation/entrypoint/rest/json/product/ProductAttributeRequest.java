@@ -15,6 +15,6 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductAttributeRequest {
 
-    @NotBlank
+    @NotBlank(message = "{productAttributeRequest.name.required}")
     private String name;
 }

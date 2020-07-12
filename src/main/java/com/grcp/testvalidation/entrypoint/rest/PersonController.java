@@ -1,6 +1,6 @@
 package com.grcp.testvalidation.entrypoint.rest;
 
-import com.grcp.testvalidation.entrypoint.rest.json.DependentRequest;
+import com.grcp.testvalidation.entrypoint.rest.json.person.DependentRequest;
 import com.grcp.testvalidation.entrypoint.rest.json.person.PersonRequest;
 import java.util.Set;
 import javax.validation.ConstraintViolation;

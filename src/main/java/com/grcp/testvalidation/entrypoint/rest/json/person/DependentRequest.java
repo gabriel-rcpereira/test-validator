@@ -1,15 +1,13 @@
-package com.grcp.testvalidation.entrypoint.rest.json;
+package com.grcp.testvalidation.entrypoint.rest.json.person;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.util.StringUtils;
 
 import static lombok.AccessLevel.PRIVATE;
-import static org.springframework.util.StringUtils.*;
+import static org.springframework.util.StringUtils.isEmpty;
 
 @Getter
 @Setter(PRIVATE)

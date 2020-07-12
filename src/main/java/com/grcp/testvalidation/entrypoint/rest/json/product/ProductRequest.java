@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.NonNull;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -22,15 +22,15 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 public class ProductRequest {
 
-    @NonNull
+    @NotBlank(message = "{productRequest.name.required}")
     @Size(min = 3, max = 50)
     private String name;
 
-    @DecimalMin("0.01")
+    @DecimalMin(value = "0.01", message = "{productRequest.value.min}")
     private double value;
 
     @Valid
-    @ProductAttribute
+    @ProductAttribute(message = "{productRequest.attributes.error}")
     @Builder.Default
     private List<ProductAttributeRequest> attributes = new ArrayList<>();
 }

@@ -3,7 +3,7 @@ package com.grcp.testvalidation.entrypoint.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.grcp.testvalidation.config.message.MessageConfiguration;
 import com.grcp.testvalidation.entrypoint.rest.customvalidator.person.DependentProgrammaticallyValidator;
-import com.grcp.testvalidation.entrypoint.rest.json.DependentRequest;
+import com.grcp.testvalidation.entrypoint.rest.json.person.DependentRequest;
 import com.grcp.testvalidation.entrypoint.rest.json.person.PersonRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
