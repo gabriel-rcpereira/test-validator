@@ -3,6 +3,8 @@ package com.grcp.testvalidation.entrypoint.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.grcp.testvalidation.config.message.MessageConfiguration;
 import com.grcp.testvalidation.entrypoint.rest.customvalidator.person.DependentProgrammaticallyValidator;
+import com.grcp.testvalidation.entrypoint.rest.handlerexception.CustomExceptionHandler;
+import com.grcp.testvalidation.entrypoint.rest.handlerexception.mapper.ErrorMapper;
 import com.grcp.testvalidation.entrypoint.rest.json.person.DependentRequest;
 import com.grcp.testvalidation.entrypoint.rest.json.person.PersonRequest;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = { PersonController.class, DependentProgrammaticallyValidator.class, MessageConfiguration.class })
+@WebMvcTest(controllers = { PersonController.class, DependentProgrammaticallyValidator.class, MessageConfiguration.class, CustomExceptionHandler.class, ErrorMapper.class})
 public class PersonControllerTest {
 
     @Autowired

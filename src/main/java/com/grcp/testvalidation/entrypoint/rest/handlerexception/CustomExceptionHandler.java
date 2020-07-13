@@ -26,9 +26,10 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(BAD_REQUEST)
-    ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
+    ResponseEntity<ErrorResponse> handleConstraintViolationException(ConstraintViolationException e) {
+        ErrorResponse errorResponse = errorMapper.mapToErrorResponse(e.getConstraintViolations());
         return ResponseEntity.badRequest()
-                .body("Error from ConstraintViolationException. Not valid due to validation error: " + e.getMessage());
+                .body(errorResponse);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
